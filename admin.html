@@ -355,11 +355,21 @@
             <input type="number" id="prod-price" class="form-control" required min="0">
           </div>
         </div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label">Đường dẫn ảnh *</label>
-            <input type="text" id="prod-image" class="form-control" placeholder="assets/images/..." required>
+        <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="form-group" style="grid-column: span 2;">
+            <label class="form-label">Hình ảnh sản phẩm *</label>
+            <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+              <img src="" id="prod-img-preview"
+                style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); display: none;"
+                alt="Preview">
+              <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
+                <input type="file" id="prod-image-file" accept="image/*" class="form-control" style="padding: 5px;">
+                <input type="text" id="prod-image" class="form-control" placeholder="assets/images/... (hoặc chọn file từ máy tính)" required>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="form-grid">
           <div class="form-group">
             <label class="form-label">Nhãn nổi bật (Tag)</label>
             <input type="text" id="prod-tag" class="form-control" placeholder="Ví dụ: Bán chạy, Món mới">
@@ -398,8 +408,16 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Đường dẫn ảnh *</label>
-          <input type="text" id="comb-image" class="form-control" placeholder="assets/images/..." required>
+          <label class="form-label">Hình ảnh hộp quà *</label>
+          <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+            <img src="" id="comb-img-preview"
+              style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); display: none;"
+              alt="Preview">
+            <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
+              <input type="file" id="comb-image-file" accept="image/*" class="form-control" style="padding: 5px;">
+              <input type="text" id="comb-image" class="form-control" placeholder="assets/images/... (hoặc chọn file từ máy tính)" required>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Mô Tả Thành Phần Hộp Quà *</label>
@@ -443,12 +461,28 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Đường dẫn file (URL) *</label>
-          <input type="text" id="gal-url" class="form-control" placeholder="assets/images/... hoặc link YouTube embed" required>
+          <label class="form-label">Đường dẫn file (URL / Link nhúng) *</label>
+          <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+            <img src="" id="gal-img-preview"
+              style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); display: none;"
+              alt="Preview">
+            <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
+              <input type="file" id="gal-image-file" accept="image/*" class="form-control" style="padding: 5px;">
+              <input type="text" id="gal-url" class="form-control" placeholder="assets/images/... hoặc link YouTube embed (chọn file nếu là hình ảnh)" required>
+            </div>
+          </div>
         </div>
         <div class="form-group" id="gal-thumbnail-group" style="display: none;">
           <label class="form-label">Đường dẫn ảnh đại diện (Thumbnail Video) *</label>
-          <input type="text" id="gal-thumbnail" class="form-control" placeholder="assets/images/...">
+          <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+            <img src="" id="gal-thumb-preview"
+              style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); display: none;"
+              alt="Preview">
+            <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
+              <input type="file" id="gal-thumbnail-file" accept="image/*" class="form-control" style="padding: 5px;">
+              <input type="text" id="gal-thumbnail" class="form-control" placeholder="assets/images/... (hoặc chọn file ảnh đại diện)">
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label">Chú thích (Caption) *</label>

@@ -103,6 +103,41 @@ app.post('/api/upload-logo', (req, res) => {
   });
 });
 
+// --- GENERIC IMAGE UPLOAD API ---
+app.post('/api/upload-image', (req, res) => {
+  const { image, filename } = req.body;
+  if (!image) {
+    return res.status(400).json({ error: 'Không tìm thấy dữ liệu hình ảnh.' });
+  }
+  
+  const base64Data = image.replace(/^data:image\/\w+;base64,/, "");
+  // Generate safe filename with timestamp
+  const timestamp = Date.now();
+  let safeFilename = `img_${timestamp}.png`;
+  if (filename) {
+    const ext = path.extname(filename) || '.png';
+    const base = path.basename(filename, ext).replace(/[^a-zA-Z0-9.\-_]/g, '_');
+    safeFilename = `${base}_${timestamp}${ext}`;
+  }
+  
+  const uploadPath = path.join(__dirname, 'assets', 'images', safeFilename);
+  
+  // Ensure folder exists
+  const dir = path.dirname(uploadPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  
+  fs.writeFile(uploadPath, base64Data, 'base64', (err) => {
+    if (err) {
+      console.error('Error writing uploaded image file:', err);
+      return res.status(500).json({ error: 'Lỗi ghi file hình ảnh tải lên.' });
+    }
+    res.json({ success: true, imageUrl: `assets/images/${safeFilename}` });
+  });
+});
+
+
 // --- ORDERS API ---
 app.get('/api/orders', async (req, res) => {
   try {

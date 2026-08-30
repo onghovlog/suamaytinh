@@ -476,6 +476,15 @@ window.editProduct = function(id) {
   document.getElementById('prod-tag').value = p.tag || '';
   document.getElementById('prod-description').value = p.description;
   
+  // Reset file input & setup preview
+  const fileInput = document.getElementById('prod-image-file');
+  if (fileInput) fileInput.value = '';
+  const previewImg = document.getElementById('prod-img-preview');
+  if (previewImg) {
+    previewImg.src = p.image;
+    previewImg.style.display = 'block';
+  }
+  
   productModalTitle.textContent = 'Sửa Bánh Trung Thu';
   productModal.classList.add('open');
 };
@@ -498,9 +507,21 @@ async function submitProductForm(e) {
   const name = document.getElementById('prod-name').value;
   const category = document.getElementById('prod-category').value;
   const price = parseInt(document.getElementById('prod-price').value, 10);
-  const image = document.getElementById('prod-image').value;
+  let image = document.getElementById('prod-image').value;
   const tag = document.getElementById('prod-tag').value;
   const description = document.getElementById('prod-description').value;
+  
+  // Upload image file if selected
+  const fileInput = document.getElementById('prod-image-file');
+  if (fileInput && fileInput.files && fileInput.files[0]) {
+    try {
+      image = await uploadImageFile(fileInput.files[0]);
+    } catch (err) {
+      console.error(err);
+      alert('Lỗi tải ảnh sản phẩm lên server: ' + err.message);
+      return;
+    }
+  }
   
   const productData = { id, name, category, price, image, tag, description };
   
@@ -537,6 +558,15 @@ window.editCombo = function(id) {
   document.getElementById('comb-tag').value = c.tag || '';
   document.getElementById('comb-description').value = c.description;
   
+  // Reset file input & setup preview
+  const fileInput = document.getElementById('comb-image-file');
+  if (fileInput) fileInput.value = '';
+  const previewImg = document.getElementById('comb-img-preview');
+  if (previewImg) {
+    previewImg.src = c.image;
+    previewImg.style.display = 'block';
+  }
+  
   comboModalTitle.textContent = 'Sửa Hộp Quà Cao Cấp';
   comboModal.classList.add('open');
 };
@@ -558,9 +588,21 @@ async function submitComboForm(e) {
   const id = document.getElementById('comb-id').value;
   const name = document.getElementById('comb-name').value;
   const price = parseInt(document.getElementById('comb-price').value, 10);
-  const image = document.getElementById('comb-image').value;
+  let image = document.getElementById('comb-image').value;
   const tag = document.getElementById('comb-tag').value;
   const description = document.getElementById('comb-description').value;
+  
+  // Upload image file if selected
+  const fileInput = document.getElementById('comb-image-file');
+  if (fileInput && fileInput.files && fileInput.files[0]) {
+    try {
+      image = await uploadImageFile(fileInput.files[0]);
+    } catch (err) {
+      console.error(err);
+      alert('Lỗi tải ảnh hộp quà lên server: ' + err.message);
+      return;
+    }
+  }
   
   const comboData = { id, name, price, image, tag, description };
   
@@ -596,6 +638,32 @@ window.editGallery = function(id) {
   document.getElementById('gal-thumbnail').value = item.thumbnail || '';
   document.getElementById('gal-caption').value = item.caption;
   
+  // Reset file inputs & setup previews
+  const fileInput = document.getElementById('gal-image-file');
+  if (fileInput) fileInput.value = '';
+  const thumbFileInput = document.getElementById('gal-thumbnail-file');
+  if (thumbFileInput) thumbFileInput.value = '';
+  
+  const previewImg = document.getElementById('gal-img-preview');
+  if (previewImg) {
+    if (item.type === 'image') {
+      previewImg.src = item.url;
+      previewImg.style.display = 'block';
+    } else {
+      previewImg.style.display = 'none';
+    }
+  }
+  
+  const thumbPreviewImg = document.getElementById('gal-thumb-preview');
+  if (thumbPreviewImg) {
+    if (item.type === 'video' && item.thumbnail) {
+      thumbPreviewImg.src = item.thumbnail;
+      thumbPreviewImg.style.display = 'block';
+    } else {
+      thumbPreviewImg.style.display = 'none';
+    }
+  }
+  
   const thumbnailGroup = document.getElementById('gal-thumbnail-group');
   if (item.type === 'video') {
     thumbnailGroup.style.display = 'block';
@@ -625,9 +693,33 @@ async function submitGalleryForm(e) {
   
   const id = document.getElementById('gal-id').value;
   const type = document.getElementById('gal-type').value;
-  const url = document.getElementById('gal-url').value;
-  const thumbnail = document.getElementById('gal-thumbnail').value;
+  let url = document.getElementById('gal-url').value;
+  let thumbnail = document.getElementById('gal-thumbnail').value;
   const caption = document.getElementById('gal-caption').value;
+  
+  // Upload image file if selected
+  const fileInput = document.getElementById('gal-image-file');
+  if (fileInput && fileInput.files && fileInput.files[0] && type === 'image') {
+    try {
+      url = await uploadImageFile(fileInput.files[0]);
+    } catch (err) {
+      console.error(err);
+      alert('Lỗi tải hình ảnh thư viện lên server: ' + err.message);
+      return;
+    }
+  }
+  
+  // Upload video thumbnail if selected
+  const thumbFileInput = document.getElementById('gal-thumbnail-file');
+  if (thumbFileInput && thumbFileInput.files && thumbFileInput.files[0] && type === 'video') {
+    try {
+      thumbnail = await uploadImageFile(thumbFileInput.files[0]);
+    } catch (err) {
+      console.error(err);
+      alert('Lỗi tải ảnh đại diện video lên server: ' + err.message);
+      return;
+    }
+  }
   
   const galleryData = { id, type, url, caption };
   if (type === 'video') {
@@ -757,6 +849,13 @@ function setupEventListeners() {
   btnAddProduct.addEventListener('click', () => {
     document.getElementById('prod-id').value = '';
     productForm.reset();
+    const fileInput = document.getElementById('prod-image-file');
+    if (fileInput) fileInput.value = '';
+    const previewImg = document.getElementById('prod-img-preview');
+    if (previewImg) {
+      previewImg.src = '';
+      previewImg.style.display = 'none';
+    }
     productModalTitle.textContent = 'Thêm Bánh Trung Thu Mới';
     productModal.classList.add('open');
   });
@@ -767,6 +866,13 @@ function setupEventListeners() {
   btnAddCombo.addEventListener('click', () => {
     document.getElementById('comb-id').value = '';
     comboForm.reset();
+    const fileInput = document.getElementById('comb-image-file');
+    if (fileInput) fileInput.value = '';
+    const previewImg = document.getElementById('comb-img-preview');
+    if (previewImg) {
+      previewImg.src = '';
+      previewImg.style.display = 'none';
+    }
     comboModalTitle.textContent = 'Thêm Hộp Quà Mới';
     comboModal.classList.add('open');
   });
@@ -786,12 +892,31 @@ function setupEventListeners() {
       galThumbnailGroup.style.display = 'none';
       galThumbnailInput.required = false;
       galThumbnailInput.value = '';
+      const thumbPreviewImg = document.getElementById('gal-thumb-preview');
+      if (thumbPreviewImg) {
+        thumbPreviewImg.src = '';
+        thumbPreviewImg.style.display = 'none';
+      }
     }
   });
   
   btnAddGallery.addEventListener('click', () => {
     document.getElementById('gal-id').value = '';
     galleryForm.reset();
+    const fileInput = document.getElementById('gal-image-file');
+    if (fileInput) fileInput.value = '';
+    const thumbFileInput = document.getElementById('gal-thumbnail-file');
+    if (thumbFileInput) thumbFileInput.value = '';
+    const previewImg = document.getElementById('gal-img-preview');
+    if (previewImg) {
+      previewImg.src = '';
+      previewImg.style.display = 'none';
+    }
+    const thumbPreviewImg = document.getElementById('gal-thumb-preview');
+    if (thumbPreviewImg) {
+      thumbPreviewImg.src = '';
+      thumbPreviewImg.style.display = 'none';
+    }
     galThumbnailGroup.style.display = 'none';
     galThumbnailInput.required = false;
     galleryModalTitle.textContent = 'Thêm Thư Viện Mới';
@@ -799,6 +924,12 @@ function setupEventListeners() {
   });
   galleryModalClose.addEventListener('click', () => galleryModal.classList.remove('open'));
   galleryForm.addEventListener('submit', submitGalleryForm);
+  
+  // Setup automatic file upload change/preview listeners
+  setupImagePreviewListener('prod-image-file', 'prod-img-preview', 'prod-image');
+  setupImagePreviewListener('comb-image-file', 'comb-img-preview', 'comb-image');
+  setupImagePreviewListener('gal-image-file', 'gal-img-preview', 'gal-url');
+  setupImagePreviewListener('gal-thumbnail-file', 'gal-thumb-preview', 'gal-thumbnail');
   
   // Order dialog close
   orderModalClose.addEventListener('click', () => orderModal.classList.remove('open'));
@@ -866,4 +997,52 @@ function getStatusBadgeClass(status) {
   if (status === 'Đã giao') return 'status-shipped';
   if (status === 'Đã hủy') return 'status-cancelled';
   return '';
+}
+
+// --- NEW FILE UPLOAD HELPERS ---
+async function uploadImageFile(file) {
+  const reader = new FileReader();
+  return new Promise((resolve, reject) => {
+    reader.onloadend = async () => {
+      try {
+        const base64Data = reader.result;
+        const uploadRes = await fetch('/api/upload-image', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ image: base64Data, filename: file.name })
+        });
+        
+        if (!uploadRes.ok) throw new Error('Không thể tải ảnh lên server');
+        
+        const result = await uploadRes.json();
+        resolve(result.imageUrl);
+      } catch (error) {
+        reject(error);
+      }
+    };
+    reader.onerror = () => reject(new Error('Lỗi đọc file ảnh'));
+    reader.readAsDataURL(file);
+  });
+}
+
+function setupImagePreviewListener(fileInputId, previewImgId, textInputId) {
+  const fileInput = document.getElementById(fileInputId);
+  const previewImg = document.getElementById(previewImgId);
+  const textInput = document.getElementById(textInputId);
+  
+  if (fileInput && previewImg) {
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const objectUrl = URL.createObjectURL(file);
+        previewImg.src = objectUrl;
+        previewImg.style.display = 'block';
+        if (textInput) {
+          textInput.value = `assets/images/${file.name} (Sẽ tải lên khi bấm Lưu)`;
+        }
+      }
+    });
+  }
 }
