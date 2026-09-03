@@ -46,6 +46,7 @@ const brandEmail = document.getElementById('brand-email');
 // --- INIT APP ---
 document.addEventListener('DOMContentLoaded', () => {
   loadCartFromStorage();
+  initHeroSlider();
   fetchDatabase();
   setupEventListeners();
 });
@@ -77,11 +78,17 @@ function renderBrandInfo() {
   const brand = dbData.brand;
 
   // Set logo if configured
-  if (brand.logoUrl) {
-    const brandLogo = document.getElementById('brand-logo');
-    const footerLogo = document.getElementById('footer-logo');
-    if (brandLogo) brandLogo.src = brand.logoUrl + '?t=' + Date.now();
-    if (footerLogo) footerLogo.src = brand.logoUrl + '?t=' + Date.now();
+  const brandLogo = document.getElementById('brand-logo');
+  const footerLogo = document.getElementById('footer-logo');
+  const logoUrl = brand.logoUrl || 'assets/images/logo_sua_may_tinh.png';
+  
+  if (brandLogo) {
+    brandLogo.src = logoUrl;
+    brandLogo.style.display = 'block';
+  }
+  if (footerLogo) {
+    footerLogo.src = logoUrl;
+    footerLogo.style.display = 'block';
   }
 
   // Set details in elements
@@ -355,15 +362,19 @@ function setupEventListeners() {
     currentPriceSlideIndex = index;
   }
 
-  if (viewPriceBtn && priceModal) {
-    viewPriceBtn.addEventListener('click', () => {
-      priceModal.classList.add('open');
-      showPriceSlide(0);
+  if (priceModal) {
+    document.querySelectorAll('#view-price-btn, .view-price-btn-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        priceModal.classList.add('open');
+        showPriceSlide(0);
+      });
     });
 
-    priceModalClose.addEventListener('click', () => {
-      priceModal.classList.remove('open');
-    });
+    if (priceModalClose) {
+      priceModalClose.addEventListener('click', () => {
+        priceModal.classList.remove('open');
+      });
+    }
 
     priceModal.addEventListener('click', (e) => {
       if (e.target === priceModal) {
@@ -734,3 +745,102 @@ function loadCartFromStorage() {
 function formatPrice(number) {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
 }
+
+// --- HERO SLIDER (AUTO 5S & CONTROLS) ---
+function initHeroSlider() {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  const prevBtn = document.getElementById('hero-prev-btn');
+  const nextBtn = document.getElementById('hero-next-btn');
+  const heroSection = document.getElementById('hero');
+
+  if (!slides || slides.length === 0) return;
+
+  let currentSlide = 0;
+  let autoSlideTimer = null;
+  const SLIDE_INTERVAL = 5000; // 5 seconds
+
+  function showSlide(index) {
+    if (index < 0) {
+      index = slides.length - 1;
+    } else if (index >= slides.length) {
+      index = 0;
+    }
+
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideTimer = setInterval(nextSlide, SLIDE_INTERVAL);
+  }
+
+  function stopAutoSlide() {
+    if (autoSlideTimer) {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
+    }
+  }
+
+  // Arrow Event Listeners
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      prevSlide();
+      startAutoSlide(); // Reset 5s countdown
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      nextSlide();
+      startAutoSlide(); // Reset 5s countdown
+    });
+  }
+
+  // Dots Event Listeners
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      const targetIndex = parseInt(e.currentTarget.getAttribute('data-slide'), 10);
+      if (!isNaN(targetIndex)) {
+        showSlide(targetIndex);
+        startAutoSlide();
+      }
+    });
+  });
+
+  // Pause on hover
+  if (heroSection) {
+    heroSection.addEventListener('mouseenter', stopAutoSlide);
+    heroSection.addEventListener('mouseleave', startAutoSlide);
+  }
+
+  // Start auto-slide on page load
+  startAutoSlide();
+}
+

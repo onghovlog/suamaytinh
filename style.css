@@ -326,17 +326,42 @@ header.scrolled {
   transition: var(--transition-smooth);
 }
 
-/* --- HERO BANNER SECTION --- */
+/* --- HERO BANNER & SLIDER SECTION --- */
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 600px;
-  background-image: linear-gradient(to right, rgba(7, 21, 38, 0.88) 40%, rgba(7, 21, 38, 0.35) 100%), url('assets/images/hero_banner.jpg');
+  min-height: 620px;
+  overflow: hidden;
+  z-index: 1;
+  background-color: var(--bg-dark);
+}
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
   z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
 }
 
 .hero-container {
@@ -347,28 +372,50 @@ header.scrolled {
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 650px;
   color: var(--text-light);
-  animation: fadeInUp 1s ease-out;
+}
+
+.hero-slide.active .hero-subtitle {
+  animation: heroFadeInUp 0.6s ease-out forwards;
+}
+
+.hero-slide.active .hero-title {
+  animation: heroFadeInUp 0.8s ease-out 0.12s forwards;
+}
+
+.hero-slide.active .hero-description {
+  animation: heroFadeInUp 0.8s ease-out 0.25s forwards;
+}
+
+.hero-slide.active .hero-buttons {
+  animation: heroFadeInUp 0.8s ease-out 0.38s forwards;
 }
 
 .hero-subtitle {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--accent-color);
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   margin-bottom: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(25px);
 }
 
 .hero-title {
-  font-size: 3.8rem;
+  font-size: 3.4rem;
   font-weight: 700;
-  color: var(--text-light);
-  line-height: 1.2;
-  margin-bottom: 25px;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+  color: var(--text-light) !important;
+  line-height: 1.25;
+  margin-bottom: 22px;
+  text-shadow: 2px 3px 12px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: translateY(25px);
 }
 
 .hero-description {
@@ -376,22 +423,89 @@ header.scrolled {
   margin-bottom: 35px;
   color: #e2e8f0;
   font-weight: 300;
+  line-height: 1.7;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(25px);
 }
 
 .hero-buttons {
   display: flex;
   gap: 20px;
+  opacity: 0;
+  transform: translateY(25px);
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+@keyframes heroFadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Slider Controls: Arrows */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(7, 21, 38, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  color: #ffffff;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition-smooth);
+}
+
+.hero-arrow:hover {
+  background: var(--accent-color);
+  color: #ffffff;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.hero-arrow-prev {
+  left: 30px;
+}
+
+.hero-arrow-next {
+  right: 30px;
+}
+
+/* Slider Dots */
+.hero-dots {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.hero-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: 2px solid var(--accent-color);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.hero-dot.active {
+  background: var(--accent-color);
+  width: 36px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
 }
 
 /* --- REUNION STORY / GIỚI THIỆU SECTION --- */
@@ -1791,7 +1905,21 @@ footer {
     left: 0;
   }
   .hero-title {
-    font-size: 2.6rem;
+    font-size: 2.2rem;
+  }
+  .hero-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+  .hero-arrow-prev {
+    left: 12px;
+  }
+  .hero-arrow-next {
+    right: 12px;
+  }
+  .hero-dots {
+    bottom: 20px;
   }
   .section-title {
     font-size: 2rem;

@@ -29,7 +29,7 @@
     <nav class="navbar">
       <a href="#" class="logo">
         <img src="assets/images/logo_sua_may_tinh.png" alt="Sửa Máy Tính 247 Logo" class="logo-img" id="brand-logo"
-          onerror="this.style.display='none'">
+          onerror="this.src='assets/images/logo.png'">
       </a>
 
       <ul class="nav-menu" id="nav-menu">
@@ -56,20 +56,68 @@
     </nav>
   </header>
 
-  <!-- --- HERO SECTION --- -->
+  <!-- --- HERO SECTION WITH SLIDER --- -->
   <section class="hero" id="hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <p class="hero-subtitle">Mùa trăng đoàn viên 2026</p>
-        <h1 class="hero-title">Trọn Vị Đoàn Viên<br>Gửi Trao Thành Ý</h1>
-        <p class="hero-description">Thương hiệu bánh trung thu myMoon gìn giữ tinh hoa ẩm thực Việt với nguồn nguyên
-          liệu tự nhiên tinh túy, tạo nên những tác phẩm bánh trung thu vừa đậm vị truyền thống vừa mang hơi thở hiện
-          đại.</p>
-        <div class="hero-buttons">
-          <a href="#products" class="btn btn-gold">Mua Bánh Ngay</a>
-          <button id="view-price-btn" class="btn btn-outline">Xem Bảng Giá</button>
+    <div class="hero-slider" id="hero-slider">
+      <!-- Slide 1 -->
+      <div class="hero-slide active" style="background-image: linear-gradient(to right, rgba(7, 21, 38, 0.90) 40%, rgba(7, 21, 38, 0.45) 100%), url('assets/images/hero_slide_1.jpg');">
+        <div class="hero-container">
+          <div class="hero-content">
+            <p class="hero-subtitle"><i class="fa-solid fa-wrench"></i> Dịch Vụ Chuyên Nghiệp 24/7</p>
+            <h1 class="hero-title">Nhận Sửa Laptop / PC<br>Tận Nơi Nhanh Chóng</h1>
+            <p class="hero-description">Đội ngũ kỹ thuật viên giàu kinh nghiệm có mặt tận nơi sau 30 phút. Khắc phục triệt để mọi sự cố phần cứng, phần mềm, cài đặt Windows và bảo dưỡng chuyên sâu tại nhà & văn phòng.</p>
+            <div class="hero-buttons">
+              <a href="#contact" class="btn btn-primary">Đặt Lịch Sửa Ngay</a>
+              <a href="#combos" class="btn btn-outline">Xem Dịch Vụ</a>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Slide 2 -->
+      <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(7, 21, 38, 0.90) 40%, rgba(7, 21, 38, 0.45) 100%), url('assets/images/hero_slide_2.jpg');">
+        <div class="hero-container">
+          <div class="hero-content">
+            <p class="hero-subtitle"><i class="fa-solid fa-shield-halved"></i> Uy Tín & Cam Kết 100%</p>
+            <h2 class="hero-title">Thay Đổi Linh Kiện<br>Chính Hãng 100%</h2>
+            <p class="hero-description">Thay thế màn hình, bàn phím, pin, sạc, mainboard, bản lề, quạt tản nhiệt Laptop & PC chính hãng. Kiểm tra trực tiếp, lấy liền trong ngày, bảo hành 1 đổi 1 chu đáo.</p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">Xem Linh Kiện</a>
+              <a href="#contact" class="btn btn-outline">Tư Vấn Miễn Phí</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(7, 21, 38, 0.90) 40%, rgba(7, 21, 38, 0.45) 100%), url('assets/images/hero_slide_3.jpg');">
+        <div class="hero-container">
+          <div class="hero-content">
+            <p class="hero-subtitle"><i class="fa-solid fa-microchip"></i> Phân Phối Trực Tiếp</p>
+            <h2 class="hero-title">Sản Phẩm Linh Kiện<br>Laptop/PC Giá Chính Hãng</h2>
+            <p class="hero-description">Cung cấp ổ cứng SSD, RAM, CPU, Card màn hình VGA, nguồn PSU và phụ kiện công nghệ hàng đầu với mức giá niêm yết cạnh tranh và hỗ trợ kiểm tra lắp đặt miễn phí.</p>
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">Mua Linh Kiện Ngay</a>
+              <button id="view-price-btn" class="btn btn-outline">Xem Bảng Giá</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="hero-arrow hero-arrow-prev" id="hero-prev-btn" aria-label="Slide trước">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button class="hero-arrow hero-arrow-next" id="hero-next-btn" aria-label="Slide tiếp theo">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <!-- Slide Indicators / Dots -->
+    <div class="hero-dots" id="hero-dots">
+      <span class="hero-dot active" data-slide="0"></span>
+      <span class="hero-dot" data-slide="1"></span>
+      <span class="hero-dot" data-slide="2"></span>
     </div>
   </section>
 
@@ -275,9 +323,9 @@
     <div class="footer-container">
       <div class="footer-about">
         <div class="logo">
-          <img src="assets/images/logo.png" alt="myMoon Logo" class="logo-img" id="footer-logo"
-            onerror="this.style.display='none'">
-          <span class="logo-text">myMoon</span>
+          <img src="assets/images/logo_sua_may_tinh.png" alt="Sửa Máy Tính 247 Logo" class="logo-img" id="footer-logo"
+            onerror="this.src='assets/images/logo.png'">
+          <span class="logo-text">Sửa Máy Tính 247</span>
         </div>
         <p>myMoon tự hào mang đến những hương vị bánh trung thu đỉnh cao, kết hợp hài hòa nguyên liệu truyền thống và
           phong cách ẩm thực hiện đại. Sản phẩm chất lượng vượt trội, đóng gói sang trọng lịch thiệp.</p>
