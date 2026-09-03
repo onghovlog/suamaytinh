@@ -2,18 +2,18 @@
 
 /* --- PALETTE & SYSTEM --- */
 :root {
-  --primary-color: #5c0612;      /* Deep burgundy */
-  --primary-hover: #3d020a;      /* Dark burgundy */
-  --accent-gold: #dfb76c;        /* Rich Gold */
-  --accent-gold-dark: #cfa14a;   /* Darker Gold */
-  --bg-admin: #f4f6f9;           /* Light grey admin body */
-  --bg-sidebar: #1f0206;         /* Deep dark burgundy */
-  --text-dark: #333333;          /* Neutral dark text */
-  --text-light: #ffffff;         /* Pure white */
-  --border-color: #e2e8f0;       /* Table border grey */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
-  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --primary-color: #0b2545;      /* Xanh dương đậm */
+  --primary-hover: #07192e;      /* Xanh dương đậm hover */
+  --accent-gold: #f97316;        /* Màu cam phụ đạo */
+  --accent-gold-dark: #c2410c;   /* Màu cam đậm */
+  --bg-admin: #f8fafc;           /* Nền trang admin */
+  --bg-sidebar: #071526;         /* Xanh navy đậm cho sidebar */
+  --text-dark: #0f172a;          /* Chữ than đậm */
+  --text-light: #ffffff;         /* Chữ trắng */
+  --border-color: #e2e8f0;       /* Viền xám nhạt */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
   --font-body: 'Montserrat', sans-serif;
   --font-title: 'Playfair Display', serif;
 }
@@ -44,7 +44,7 @@ body {
   color: var(--text-light);
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(223, 183, 108, 0.2);
+  border-right: 1px solid rgba(249, 115, 22, 0.2);
   flex-shrink: 0;
 }
 
@@ -60,7 +60,7 @@ body {
 .logo-icon {
   width: 32px;
   height: 32px;
-  background: radial-gradient(circle, #f6d695 20%, var(--accent-gold) 60%, var(--accent-gold-dark) 100%);
+  background: radial-gradient(circle, #fdba74 20%, var(--accent-gold) 60%, var(--accent-gold-dark) 100%);
   border-radius: 50%;
   box-shadow: 0 0 10px var(--accent-gold);
 }
@@ -92,7 +92,7 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  color: #dfd4d2;
+  color: #cbd5e1;
   transition: all 0.3s ease;
   border-left: 4px solid transparent;
   position: relative;
@@ -105,7 +105,7 @@ body {
 
 .sidebar-menu li:hover, .sidebar-menu li.active {
   color: var(--accent-gold);
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .sidebar-menu li.active {
@@ -114,13 +114,13 @@ body {
 }
 
 .order-badge {
-  background-color: var(--primary-color);
-  color: var(--text-light);
+  background-color: var(--accent-gold);
+  color: #ffffff;
   font-size: 0.75rem;
   font-weight: 700;
   padding: 2px 7px;
   border-radius: 10px;
-  border: 1px solid var(--accent-gold);
+  border: 1px solid #ffffff;
   margin-left: auto;
 }
 
@@ -217,10 +217,10 @@ body {
   font-size: 1.4rem;
 }
 
-.stat-blue { background-color: #ebf8ff; color: #3182ce; }
-.stat-yellow { background-color: #fefcbf; color: #b7791f; }
+.stat-blue { background-color: #ebf8ff; color: #0b2545; }
+.stat-yellow { background-color: #fff7ed; color: #ea580c; }
 .stat-red { background-color: #fff5f5; color: #e53e3e; }
-.stat-green { background-color: #f0fff4; color: #38a169; }
+.stat-green { background-color: #f0fff4; color: #16a34a; }
 
 .stat-details {
   display: flex;
@@ -229,7 +229,7 @@ body {
 
 .stat-title {
   font-size: 0.8rem;
-  color: #718096;
+  color: #64748b;
   font-weight: 500;
 }
 
@@ -267,7 +267,7 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -277,36 +277,38 @@ body {
 .btn-outline {
   border: 1px solid var(--accent-gold);
   color: var(--accent-gold);
+  background: transparent;
 }
 
 .btn-outline:hover {
   background-color: var(--accent-gold);
-  color: var(--primary-color);
+  color: #ffffff;
 }
 
 .btn-save {
-  background-color: #38a169;
+  background-color: var(--accent-gold);
   color: #ffffff;
+  border: 1px solid var(--accent-gold);
 }
 
 .btn-save:hover {
-  background-color: #2f855a;
+  background-color: var(--accent-gold-dark);
 }
 
 .btn-add {
-  background-color: var(--primary-color);
+  background-color: var(--accent-gold);
   color: #ffffff;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--accent-gold);
 }
 
 .btn-add:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--accent-gold-dark);
 }
 
 .btn-filter {
   background-color: #ffffff;
   border: 1px solid var(--border-color);
-  color: #718096;
+  color: #64748b;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -350,15 +352,15 @@ body {
 .form-control {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid #cbd5e0;
-  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
   font-size: 0.9rem;
   color: var(--text-dark);
   transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
-  border-color: var(--accent-gold-dark);
+  border-color: var(--accent-gold);
   outline: none;
 }
 
@@ -394,9 +396,9 @@ body {
 }
 
 .table th {
-  background-color: #f7fafc;
+  background-color: #f8fafc;
   font-weight: 700;
-  color: #4a5568;
+  color: #475569;
   border-bottom: 2px solid var(--border-color);
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -405,7 +407,7 @@ body {
 
 .table td {
   border-bottom: 1px solid var(--border-color);
-  color: #4a5568;
+  color: #475569;
   vertical-align: middle;
 }
 
@@ -439,14 +441,14 @@ body {
   transition: all 0.2s ease;
 }
 
-.btn-edit { background-color: #ebf8ff; color: #3182ce; }
-.btn-edit:hover { background-color: #3182ce; color: #ffffff; }
+.btn-edit { background-color: #ebf8ff; color: #0b2545; }
+.btn-edit:hover { background-color: #0b2545; color: #ffffff; }
 
 .btn-delete { background-color: #fff5f5; color: #e53e3e; }
 .btn-delete:hover { background-color: #e53e3e; color: #ffffff; }
 
-.btn-view { background-color: #f0fff4; color: #38a169; }
-.btn-view:hover { background-color: #38a169; color: #ffffff; }
+.btn-view { background-color: #f0fff4; color: #16a34a; }
+.btn-view:hover { background-color: #16a34a; color: #ffffff; }
 
 /* --- STATUS BADGES --- */
 .status-badge {
@@ -458,10 +460,10 @@ body {
   text-align: center;
 }
 
-.status-pending { background-color: #feebc8; color: #c05621; } /* Processing */
-.status-confirmed { background-color: #e2e8f0; color: #4a5568; } /* Confirmed */
-.status-shipped { background-color: #c6f6d5; color: #22543d; } /* Shipped */
-.status-cancelled { background-color: #fed7d7; color: #9b2c2c; } /* Cancelled */
+.status-pending { background-color: #fff7ed; color: #ea580c; } /* Processing */
+.status-confirmed { background-color: #e2e8f0; color: #475569; } /* Confirmed */
+.status-shipped { background-color: #dcfce7; color: #166534; } /* Shipped */
+.status-cancelled { background-color: #fee2e2; color: #991b1b; } /* Cancelled */
 
 /* --- MODAL DIALOG --- */
 .admin-modal {
@@ -507,7 +509,7 @@ body {
   top: 15px;
   right: 20px;
   font-size: 1.8rem;
-  color: #a0aec0;
+  color: #94a3b8;
   background: none;
   border: none;
   cursor: pointer;
@@ -602,7 +604,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(rgba(31, 2, 6, 0.98), rgba(31, 2, 6, 0.98)), url('assets/images/hero_banner.jpg');
+  background-image: linear-gradient(rgba(7, 21, 38, 0.98), rgba(7, 21, 38, 0.98)), url('assets/images/hero_banner.jpg');
   background-size: cover;
   background-position: center;
   z-index: 9999;
@@ -613,7 +615,7 @@ body {
 
 .login-box {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(223, 183, 108, 0.3);
+  border: 1px solid rgba(249, 115, 22, 0.3);
   backdrop-filter: blur(10px);
   padding: 40px;
   border-radius: 8px;
@@ -641,7 +643,7 @@ body {
 
 .btn-login {
   background-color: var(--accent-gold);
-  color: var(--primary-color);
+  color: #ffffff;
   font-weight: 700;
   border: 1px solid var(--accent-gold);
   width: 100%;
@@ -653,6 +655,6 @@ body {
 }
 
 .btn-login:hover {
-  background-color: transparent;
-  color: var(--accent-gold);
+  background-color: var(--accent-gold-dark);
+  color: #ffffff;
 }
