@@ -108,23 +108,43 @@ function renderBrandInfo() {
   if (widgetHotline) widgetHotline.href = `tel:${brand.hotline.replace(/\./g, '')}`;
 }
 
-// --- RENDER PRODUCTS ---
-function renderProducts(productsList) {
+// --- PRODUCTS PAGINATION CONSTANTS & STATE ---
+const PRODUCTS_PER_PAGE = 6;
+let currentProductsList = [];
+let currentProductPage = 1;
+
+// --- RENDER PRODUCTS WITH PAGINATION ---
+function renderProducts(productsList, resetPage = true) {
   if (!productsGrid) return;
+  if (resetPage) currentProductPage = 1;
+  currentProductsList = productsList || [];
+
   productsGrid.innerHTML = '';
 
-  if (productsList.length === 0) {
+  if (currentProductsList.length === 0) {
     productsGrid.innerHTML = '<p class="cart-empty-message">Không có sản phẩm nào thuộc danh mục này.</p>';
+    const paginationContainer = document.getElementById('products-pagination');
+    if (paginationContainer) paginationContainer.style.display = 'none';
     return;
   }
 
-  productsList.forEach(product => {
+  // Calculate pages
+  const totalPages = Math.ceil(currentProductsList.length / PRODUCTS_PER_PAGE);
+  if (currentProductPage > totalPages) currentProductPage = totalPages;
+  if (currentProductPage < 1) currentProductPage = 1;
+
+  // Slice items for current page (6 items per page)
+  const startIndex = (currentProductPage - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = Math.min(startIndex + PRODUCTS_PER_PAGE, currentProductsList.length);
+  const pageItems = currentProductsList.slice(startIndex, endIndex);
+
+  pageItems.forEach(product => {
     const productCard = document.createElement('div');
     productCard.className = 'product-card';
     productCard.innerHTML = `
       <div class="product-image-container">
         <span class="product-tag">${product.tag}</span>
-        <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy">
+        <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy" onerror="this.src='assets/images/hero_slide_2.jpg'">
       </div>
       <div class="product-details">
         <h3 class="product-name">${product.name}</h3>
@@ -139,6 +159,83 @@ function renderProducts(productsList) {
     `;
     productsGrid.appendChild(productCard);
   });
+
+  // Render pagination controls (3 dots and 2 arrows)
+  renderProductsPagination(totalPages);
+}
+
+// --- RENDER PRODUCTS PAGINATION (3 DOTS + 2 ARROWS) ---
+function renderProductsPagination(totalPages) {
+  const paginationContainer = document.getElementById('products-pagination');
+  const dotsContainer = document.getElementById('pagination-dots');
+  const prevBtn = document.getElementById('pagination-prev');
+  const nextBtn = document.getElementById('pagination-next');
+
+  if (!paginationContainer || !dotsContainer) return;
+
+  // If 6 or fewer products, hide pagination
+  if (totalPages <= 1) {
+    paginationContainer.style.display = 'none';
+    return;
+  }
+
+  paginationContainer.style.display = 'flex';
+  dotsContainer.innerHTML = '';
+
+  // Render dots (up to 3 dots)
+  let dotsCount = Math.min(totalPages, 3);
+  let startDotPage = 1;
+  if (totalPages > 3) {
+    if (currentProductPage === 1) {
+      startDotPage = 1;
+    } else if (currentProductPage === totalPages) {
+      startDotPage = totalPages - 2;
+    } else {
+      startDotPage = currentProductPage - 1;
+    }
+  }
+
+  for (let i = 0; i < dotsCount; i++) {
+    const pageNum = totalPages <= 3 ? (i + 1) : (startDotPage + i);
+    const dot = document.createElement('button');
+    dot.className = 'pagination-dot' + (pageNum === currentProductPage ? ' active' : '');
+    dot.setAttribute('data-page', pageNum);
+    dot.setAttribute('aria-label', `Trang ${pageNum}`);
+    dot.addEventListener('click', () => {
+      if (currentProductPage !== pageNum) {
+        currentProductPage = pageNum;
+        renderProducts(currentProductsList, false);
+        scrollToProducts();
+      }
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  // Update arrow states
+  if (prevBtn) {
+    prevBtn.disabled = currentProductPage <= 1;
+    if (currentProductPage <= 1) {
+      prevBtn.classList.add('disabled');
+    } else {
+      prevBtn.classList.remove('disabled');
+    }
+  }
+
+  if (nextBtn) {
+    nextBtn.disabled = currentProductPage >= totalPages;
+    if (currentProductPage >= totalPages) {
+      nextBtn.classList.add('disabled');
+    } else {
+      nextBtn.classList.remove('disabled');
+    }
+  }
+}
+
+function scrollToProducts() {
+  const productsSection = document.getElementById('products');
+  if (productsSection) {
+    productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 // --- RENDER COMBOS ---
@@ -279,13 +376,36 @@ function setupEventListeners() {
 
       const category = e.target.getAttribute('data-category');
       if (category === 'all') {
-        renderProducts(dbData.products);
+        renderProducts(dbData.products, true);
       } else {
         const filtered = dbData.products.filter(p => p.category === category);
-        renderProducts(filtered);
+        renderProducts(filtered, true);
       }
     });
   });
+
+  // Product Pagination Arrows
+  const prevPageBtn = document.getElementById('pagination-prev');
+  const nextPageBtn = document.getElementById('pagination-next');
+  if (prevPageBtn) {
+    prevPageBtn.addEventListener('click', () => {
+      if (currentProductPage > 1) {
+        currentProductPage--;
+        renderProducts(currentProductsList, false);
+        scrollToProducts();
+      }
+    });
+  }
+  if (nextPageBtn) {
+    nextPageBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(currentProductsList.length / PRODUCTS_PER_PAGE);
+      if (currentProductPage < totalPages) {
+        currentProductPage++;
+        renderProducts(currentProductsList, false);
+        scrollToProducts();
+      }
+    });
+  }
 
   // Lightbox Close
   lightboxCloseBtn.addEventListener('click', closeLightbox);

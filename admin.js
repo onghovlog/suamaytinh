@@ -985,9 +985,12 @@ function formatDate(isoString) {
 }
 
 function getCategoryName(cat) {
-  if (cat === 'traditional') return 'Truyền Thống';
-  if (cat === 'modern') return 'Hiện Đại';
-  if (cat === 'lava') return 'Lava Trứng Chảy';
+  if (cat === 'laptop-cu') return 'Laptop Cũ';
+  if (cat === 'pin-sac') return 'Pin Sạc Laptop';
+  if (cat === 'chuot-ban-phim') return 'Chuột, Bàn Phím';
+  if (cat === 'traditional') return 'Laptop Cũ';
+  if (cat === 'modern') return 'Pin Sạc Laptop';
+  if (cat === 'lava') return 'Chuột, Bàn Phím';
   return cat;
 }
 

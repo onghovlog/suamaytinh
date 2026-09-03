@@ -60,10 +60,10 @@
           <i class="fa-solid fa-gears"></i> Cấu Hình Chung
         </li>
         <li data-target="panel-products">
-          <i class="fa-solid fa-cookie"></i> Quản Lý Bánh
+          <i class="fa-solid fa-laptop"></i> Quản Lý Sản Phẩm
         </li>
         <li data-target="panel-combos">
-          <i class="fa-solid fa-box-open"></i> Quản Lý Hộp Quà
+          <i class="fa-solid fa-screwdriver-wrench"></i> Quản Lý Dịch Vụ
         </li>
         <li data-target="panel-orders">
           <i class="fa-solid fa-receipt"></i> Đơn Hàng Nhận Được
@@ -209,9 +209,9 @@
         <!-- --- PANEL 3: PRODUCTS MANAGEMENT --- -->
         <section class="admin-panel" id="panel-products">
           <div class="panel-header-action">
-            <h3>Danh sách Bánh Trung Thu</h3>
+            <h3>Danh sách Sản Phẩm & Linh Kiện</h3>
             <button class="btn btn-add" id="btn-add-product">
-              <i class="fa-solid fa-plus"></i> Thêm Bánh Mới
+              <i class="fa-solid fa-plus"></i> Thêm Sản Phẩm Mới
             </button>
           </div>
 
@@ -220,7 +220,7 @@
               <thead>
                 <tr>
                   <th>Hình ảnh</th>
-                  <th>Tên bánh</th>
+                  <th>Tên sản phẩm</th>
                   <th>Phân loại</th>
                   <th>Nhãn (Tag)</th>
                   <th>Giá bán</th>
@@ -333,21 +333,21 @@
   <div class="admin-modal" id="product-modal">
     <div class="admin-modal-content">
       <button class="admin-modal-close" id="product-modal-close">&times;</button>
-      <h3 id="product-modal-title">Thêm Bánh Trung Thu Mới</h3>
+      <h3 id="product-modal-title">Thêm Sản Phẩm & Linh Kiện Mới</h3>
 
       <form id="product-form" style="margin-top: 20px;">
         <input type="hidden" id="prod-id">
         <div class="form-group">
-          <label class="form-label">Tên Bánh *</label>
+          <label class="form-label">Tên Sản Phẩm *</label>
           <input type="text" id="prod-name" class="form-control" required>
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label">Phân Loại *</label>
             <select id="prod-category" class="form-control" required>
-              <option value="traditional">Truyền Thống</option>
-              <option value="modern">Hiện Đại</option>
-              <option value="lava">Lava Trứng Chảy</option>
+              <option value="laptop-cu">Laptop Cũ</option>
+              <option value="pin-sac">Pin Sạc Laptop</option>
+              <option value="chuot-ban-phim">Chuột, Bàn Phím</option>
             </select>
           </div>
           <div class="form-group">
