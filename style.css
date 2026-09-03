@@ -2,21 +2,36 @@
 
 /* --- DESIGN SYSTEM & CSS VARIABLES --- */
 :root {
-  --primary-color: #0b2545;      /* Xanh dương đậm chủ đạo */
-  --primary-hover: #07192e;      /* Xanh dương đậm khi hover */
-  --primary-light: #133a6b;      /* Xanh dương trung tính */
-  --accent-color: #f97316;       /* Cam tươi sáng thanh lịch */
-  --accent-hover: #ea580c;       /* Cam đậm khi hover */
-  --accent-dark: #c2410c;        /* Cam trầm cho viền/chi tiết */
-  --accent-light: #fdba74;       /* Cam nhạt mềm mại */
-  --accent-gold: #f97316;        /* Tương thích alias cam */
-  --accent-gold-dark: #c2410c;   /* Tương thích alias cam đậm */
-  --accent-gold-light: #fdba74;  /* Tương thích alias cam sáng */
-  --bg-cream: #f8fafc;           /* Nền xám trắng hiện đại, tinh tế */
-  --bg-dark: #071526;            /* Xanh navy đen sâu cho header/footer/dark sections */
-  --text-dark: #0f172a;          /* Chữ đen than lịch thiệp */
-  --text-light: #ffffff;         /* Chữ trắng tinh khiết */
-  --text-muted: #64748b;         /* Chữ xám slate phụ trợ */
+  --primary-color: #0b2545;
+  /* Xanh dương đậm chủ đạo */
+  --primary-hover: #07192e;
+  /* Xanh dương đậm khi hover */
+  --primary-light: #133a6b;
+  /* Xanh dương trung tính */
+  --accent-color: #f97316;
+  /* Cam tươi sáng thanh lịch */
+  --accent-hover: #ea580c;
+  /* Cam đậm khi hover */
+  --accent-dark: #c2410c;
+  /* Cam trầm cho viền/chi tiết */
+  --accent-light: #fdba74;
+  /* Cam nhạt mềm mại */
+  --accent-gold: #f97316;
+  /* Tương thích alias cam */
+  --accent-gold-dark: #c2410c;
+  /* Tương thích alias cam đậm */
+  --accent-gold-light: #fdba74;
+  /* Tương thích alias cam sáng */
+  --bg-cream: #f8fafc;
+  /* Nền xám trắng hiện đại, tinh tế */
+  --bg-dark: #071526;
+  /* Xanh navy đen sâu cho header/footer/dark sections */
+  --text-dark: #0f172a;
+  /* Chữ đen than lịch thiệp */
+  --text-light: #ffffff;
+  /* Chữ trắng tinh khiết */
+  --text-muted: #64748b;
+  /* Chữ xám slate phụ trợ */
   --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   --box-shadow: 0 10px 30px rgba(11, 37, 69, 0.08);
   --box-shadow-hover: 0 20px 40px rgba(11, 37, 69, 0.16);
@@ -50,7 +65,10 @@ a {
   transition: var(--transition-smooth);
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
   outline: none;
 }
@@ -66,10 +84,16 @@ ul {
 }
 
 /* --- TYPOGRAPHY --- */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
-  color: var(--primary-color); /* Toàn bộ tiêu đề: Xanh dương đậm */
+  color: var(--primary-color);
+  /* Toàn bộ tiêu đề: Xanh dương đậm */
 }
 
 .section-title {
@@ -78,7 +102,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 3rem;
   position: relative;
   font-weight: 700;
-  color: var(--primary-color); /* Xanh dương đậm */
+  color: var(--primary-color);
+  /* Xanh dương đậm */
 }
 
 .section-title::after {
@@ -86,7 +111,8 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   width: 80px;
   height: 3px;
-  background-color: var(--accent-color); /* Gạch chân màu Cam */
+  background-color: var(--accent-color);
+  /* Gạch chân màu Cam */
   margin: 15px auto 0;
   border-radius: 2px;
 }
@@ -97,7 +123,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: var(--accent-color); /* Subtitle màu Cam */
+  color: var(--accent-color);
+  /* Subtitle màu Cam */
   margin-bottom: 5px;
   font-weight: 600;
 }
@@ -208,8 +235,8 @@ header.scrolled {
 }
 
 .logo-img {
-  height: 45px;
-  max-width: 150px;
+  height: 60px;
+  max-width: 200px;
   object-fit: contain;
 }
 
@@ -603,7 +630,8 @@ header.scrolled {
   transition: var(--transition-smooth);
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
   background-color: var(--accent-color);
   color: #ffffff;
   border-color: var(--accent-color);
@@ -639,7 +667,8 @@ header.scrolled {
 .product-image-container {
   position: relative;
   overflow: hidden;
-  padding-top: 100%; /* 1:1 Aspect Ratio */
+  padding-top: 100%;
+  /* 1:1 Aspect Ratio */
 }
 
 .product-img {
@@ -841,7 +870,8 @@ header.scrolled {
 
 .combo-image-container {
   position: relative;
-  padding-top: 75%; /* 4:3 Aspect Ratio */
+  padding-top: 75%;
+  /* 4:3 Aspect Ratio */
   overflow: hidden;
 }
 
@@ -1366,7 +1396,8 @@ footer {
   box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
 }
 
-.footer-links h4, .footer-newsletter h4 {
+.footer-links h4,
+.footer-newsletter h4 {
   color: var(--accent-color);
   font-size: 1.2rem;
   margin-bottom: 25px;
@@ -1666,8 +1697,15 @@ footer {
 }
 
 @keyframes scaleUp {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .lightbox-media {
@@ -1751,7 +1789,7 @@ footer {
   width: 100%;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
   animation: scaleUp 0.4s ease;
 }
 
@@ -1841,9 +1879,11 @@ footer {
   0% {
     box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
   }
+
   70% {
     box-shadow: 0 0 0 15px rgba(249, 115, 22, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
   }
@@ -1880,7 +1920,7 @@ footer {
   border: 2px solid var(--accent-color);
   border-radius: 8px;
   position: relative;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
   padding: 10px;
   animation: scaleUp 0.4s ease;
 }
@@ -2007,19 +2047,25 @@ footer {
 
 /* --- RESPONSIVE DESIGN --- */
 @media (max-width: 1024px) {
-  .story-container, .contact-container {
+
+  .story-container,
+  .contact-container {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
   .story-image-wrapper {
     order: 2;
   }
+
   .story-content {
     order: 1;
   }
+
   .footer-container {
     grid-template-columns: 1fr 1fr;
   }
+
   .footer-newsletter {
     grid-column: span 2;
   }
@@ -2029,9 +2075,11 @@ footer {
   :root {
     --header-height: 70px;
   }
+
   .hamburger {
     display: flex;
   }
+
   .nav-menu {
     position: fixed;
     top: var(--header-height);
@@ -2046,58 +2094,74 @@ footer {
     transition: var(--transition-smooth);
     border-top: 1px solid rgba(249, 115, 22, 0.2);
   }
+
   .nav-menu.open {
     left: 0;
   }
+
   .hero-title {
     font-size: 2.2rem;
   }
+
   .hero-arrow {
     width: 42px;
     height: 42px;
     font-size: 1rem;
   }
+
   .hero-arrow-prev {
     left: 12px;
   }
+
   .hero-arrow-next {
     right: 12px;
   }
+
   .hero-dots {
     bottom: 20px;
   }
+
   .section-title {
     font-size: 2rem;
   }
+
   .cart-drawer {
     width: 100%;
     right: -100%;
   }
+
   .lightbox-iframe {
     height: 250px;
   }
+
   .lightbox-iframe.lightbox-short {
     width: 280px;
     height: 497px;
     max-height: 70vh;
   }
+
   .lightbox-content.is-short {
     max-width: 280px;
   }
+
   .form-buttons-group {
     grid-template-columns: 1fr;
   }
+
   .footer-container {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
   .footer-newsletter {
     grid-column: span 1;
   }
+
   .footer-bottom {
     flex-direction: column;
     text-align: center;
   }
+
   .price-slider-wrapper {
     height: 60vh;
   }
