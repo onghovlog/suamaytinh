@@ -238,7 +238,7 @@ function scrollToProducts() {
   }
 }
 
-// --- RENDER COMBOS ---
+// --- RENDER SERVICES / DỊCH VỤ ---
 function renderCombos(combosList) {
   if (!combosGrid) return;
   combosGrid.innerHTML = '';
@@ -249,14 +249,14 @@ function renderCombos(combosList) {
     comboCard.innerHTML = `
       <div class="combo-image-container">
         <span class="combo-tag">${combo.tag}</span>
-        <img src="${combo.image}" alt="${combo.name}" class="combo-img" loading="lazy">
+        <img src="${combo.image}" alt="${combo.name}" class="combo-img" loading="lazy" onerror="this.src='assets/images/hero_slide_1.jpg'">
       </div>
       <div class="combo-details">
         <h3 class="combo-name">${combo.name}</h3>
         <p class="combo-desc">${combo.description}</p>
         <div class="combo-footer">
-          <span class="combo-price">${formatPrice(combo.price)}</span>
-          <button class="btn btn-gold combo-btn" onclick="addToCart('${combo.id}', 'combo')">Chọn Combo</button>
+          <span class="combo-price">Từ ${formatPrice(combo.price)}</span>
+          <button class="btn btn-primary combo-btn" onclick="addToCart('${combo.id}', 'combo')">Đặt Dịch Vụ</button>
         </div>
       </div>
     `;
