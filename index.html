@@ -240,15 +240,28 @@
     </div>
   </section>
 
-  <!-- --- GALLERY SECTION --- -->
+  <!-- --- GALLERY / GÓC VỌC SECTION --- -->
   <section class="gallery" id="gallery">
     <h2 class="section-title">
-      <span>Hình Ảnh Đậm Nét</span>
-      Góc Nghệ Thuật myMoon
+      <span>GÓC VỌC</span>
+      Bí quyết dành cho bạn
     </h2>
 
     <div class="gallery-grid" id="gallery-grid">
-      <!-- Gallery items will be dynamically loaded here by app.js -->
+      <!-- Video gallery items loaded dynamically by app.js -->
+    </div>
+
+    <!-- Gallery Slider Pagination: 3 Dots and 2 Arrows -->
+    <div class="gallery-pagination" id="gallery-pagination" style="display: none;">
+      <button class="pagination-arrow gallery-prev" id="gallery-prev" aria-label="Slide trước">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="pagination-dots" id="gallery-dots">
+        <!-- 3 Dots dynamically rendered -->
+      </div>
+      <button class="pagination-arrow gallery-next" id="gallery-next" aria-label="Slide tiếp theo">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
     </div>
   </section>
 

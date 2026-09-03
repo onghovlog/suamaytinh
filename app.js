@@ -264,37 +264,133 @@ function renderCombos(combosList) {
   });
 }
 
-// --- RENDER GALLERY ---
-function renderGallery(galleryList) {
+// --- GALLERY PAGINATION CONSTANTS & STATE ---
+const GALLERY_PER_PAGE = 6;
+let currentGalleryList = [];
+let currentGalleryPage = 1;
+
+// --- RENDER GALLERY (GÓC VỌC VIDEOS WITH 6-BOX PAGINATION) ---
+function renderGallery(galleryList, resetPage = true) {
   if (!galleryGrid) return;
+  if (resetPage) currentGalleryPage = 1;
+  currentGalleryList = galleryList || [];
+
   galleryGrid.innerHTML = '';
 
-  galleryList.forEach(item => {
+  if (currentGalleryList.length === 0) {
+    galleryGrid.innerHTML = '<p class="cart-empty-message">Chưa có video nào trong thư viện.</p>';
+    const paginationContainer = document.getElementById('gallery-pagination');
+    if (paginationContainer) paginationContainer.style.display = 'none';
+    return;
+  }
+
+  // Calculate pages
+  const totalPages = Math.ceil(currentGalleryList.length / GALLERY_PER_PAGE);
+  if (currentGalleryPage > totalPages) currentGalleryPage = totalPages;
+  if (currentGalleryPage < 1) currentGalleryPage = 1;
+
+  // Slice 6 items for the current slide
+  const startIndex = (currentGalleryPage - 1) * GALLERY_PER_PAGE;
+  const endIndex = Math.min(startIndex + GALLERY_PER_PAGE, currentGalleryList.length);
+  const pageItems = currentGalleryList.slice(startIndex, endIndex);
+
+  pageItems.forEach(item => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
+    
+    const tagText = item.tag || (item.url && item.url.includes('/shorts/') ? 'Shorts 60s' : 'Video Hướng Dẫn');
+    const thumbUrl = item.thumbnail || item.url || 'assets/images/hero_slide_1.jpg';
+
+    galleryItem.innerHTML = `
+      <div class="gallery-thumbnail-wrap">
+        <span class="gallery-tag">${tagText}</span>
+        <img src="${thumbUrl}" alt="${item.caption}" class="gallery-media" loading="lazy" onerror="this.src='assets/images/hero_slide_1.jpg'">
+        <div class="video-play-btn"><i class="fa-solid fa-play"></i></div>
+      </div>
+      <div class="gallery-info">
+        <h4 class="gallery-caption">${item.caption}</h4>
+      </div>
+    `;
 
     // Add open modal trigger
     galleryItem.addEventListener('click', () => openLightbox(item));
-
-    if (item.type === 'video') {
-      galleryItem.innerHTML = `
-        <img src="${item.thumbnail}" alt="${item.caption}" class="gallery-media" loading="lazy">
-        <div class="gallery-overlay">
-          <div class="video-play-btn"><i class="fa-solid fa-play"></i></div>
-          <span class="gallery-caption">${item.caption}</span>
-        </div>
-      `;
-    } else {
-      galleryItem.innerHTML = `
-        <img src="${item.url}" alt="${item.caption}" class="gallery-media" loading="lazy">
-        <div class="gallery-overlay">
-          <div class="gallery-icon"><i class="fa-solid fa-expand"></i></div>
-          <span class="gallery-caption">${item.caption}</span>
-        </div>
-      `;
-    }
     galleryGrid.appendChild(galleryItem);
   });
+
+  // Render gallery pagination (3 dots and 2 arrows)
+  renderGalleryPagination(totalPages);
+}
+
+// --- RENDER GALLERY PAGINATION ---
+function renderGalleryPagination(totalPages) {
+  const paginationContainer = document.getElementById('gallery-pagination');
+  const dotsContainer = document.getElementById('gallery-dots');
+  const prevBtn = document.getElementById('gallery-prev');
+  const nextBtn = document.getElementById('gallery-next');
+
+  if (!paginationContainer || !dotsContainer) return;
+
+  if (totalPages <= 1) {
+    paginationContainer.style.display = 'none';
+    return;
+  }
+
+  paginationContainer.style.display = 'flex';
+  dotsContainer.innerHTML = '';
+
+  let dotsCount = Math.min(totalPages, 3);
+  let startDotPage = 1;
+  if (totalPages > 3) {
+    if (currentGalleryPage === 1) {
+      startDotPage = 1;
+    } else if (currentGalleryPage === totalPages) {
+      startDotPage = totalPages - 2;
+    } else {
+      startDotPage = currentGalleryPage - 1;
+    }
+  }
+
+  for (let i = 0; i < dotsCount; i++) {
+    const pageNum = totalPages <= 3 ? (i + 1) : (startDotPage + i);
+    const dot = document.createElement('button');
+    dot.className = 'pagination-dot' + (pageNum === currentGalleryPage ? ' active' : '');
+    dot.setAttribute('data-page', pageNum);
+    dot.setAttribute('aria-label', `Slide ${pageNum}`);
+    dot.addEventListener('click', () => {
+      if (currentGalleryPage !== pageNum) {
+        currentGalleryPage = pageNum;
+        renderGallery(currentGalleryList, false);
+        scrollToGallery();
+      }
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  // Update arrow states
+  if (prevBtn) {
+    prevBtn.disabled = currentGalleryPage <= 1;
+    if (currentGalleryPage <= 1) {
+      prevBtn.classList.add('disabled');
+    } else {
+      prevBtn.classList.remove('disabled');
+    }
+  }
+
+  if (nextBtn) {
+    nextBtn.disabled = currentGalleryPage >= totalPages;
+    if (currentGalleryPage >= totalPages) {
+      nextBtn.classList.add('disabled');
+    } else {
+      nextBtn.classList.remove('disabled');
+    }
+  }
+}
+
+function scrollToGallery() {
+  const gallerySection = document.getElementById('gallery');
+  if (gallerySection) {
+    gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 // --- RENDER TESTIMONIALS ---
@@ -403,6 +499,29 @@ function setupEventListeners() {
         currentProductPage++;
         renderProducts(currentProductsList, false);
         scrollToProducts();
+      }
+    });
+  }
+
+  // Gallery Pagination Arrows
+  const prevGalleryBtn = document.getElementById('gallery-prev');
+  const nextGalleryBtn = document.getElementById('gallery-next');
+  if (prevGalleryBtn) {
+    prevGalleryBtn.addEventListener('click', () => {
+      if (currentGalleryPage > 1) {
+        currentGalleryPage--;
+        renderGallery(currentGalleryList, false);
+        scrollToGallery();
+      }
+    });
+  }
+  if (nextGalleryBtn) {
+    nextGalleryBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(currentGalleryList.length / GALLERY_PER_PAGE);
+      if (currentGalleryPage < totalPages) {
+        currentGalleryPage++;
+        renderGallery(currentGalleryList, false);
+        scrollToGallery();
       }
     });
   }
