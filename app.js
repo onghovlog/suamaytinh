@@ -80,7 +80,7 @@ function renderBrandInfo() {
   // Set logo if configured
   const brandLogo = document.getElementById('brand-logo');
   const footerLogo = document.getElementById('footer-logo');
-  const logoUrl = brand.logoUrl || 'assets/images/logo_sua_may_tinh.png';
+  const logoUrl = brand.logoUrl || 'assets/images/logo_suamaytinh_w.png';
   
   if (brandLogo) {
     brandLogo.src = logoUrl;
