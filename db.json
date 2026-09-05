@@ -1,0 +1,399 @@
+{
+  "brand": {
+    "name": "myMoon",
+    "tagline": "Trọn Vị Đoàn Viên - Gửi Trao Thành Ý",
+    "hotline": "0344.582.293",
+    "email": "tranbaho@gmail.com",
+    "address": "801/2A Phạm Thế Hiển, Phường Chánh Hưng, TP.HCM (Ông Tía Shop)",
+    "messengerUrl": "https://m.me/baho.tran",
+    "zaloUrl": "https://zalo.me/0344582293",
+    "logoUrl": "assets/images/logo_suamaytinh_w.png"
+  },
+  "admin": {
+    "username": "0344582293",
+    "password": "123"
+  },
+  "products": [
+    {
+      "id": "lap-01",
+      "name": "Laptop Dell Latitude 7490 Core i7 / 16GB / SSD 512GB",
+      "category": "laptop-cu",
+      "price": 7500000,
+      "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80",
+      "tag": "Bán Chạy",
+      "description": "Laptop văn phòng doanh nhân mỏng nhẹ, màn 14 inch Full HD IPS chống chói sắc nét, pin 4-5 tiếng ổn định."
+    },
+    {
+      "id": "lap-02",
+      "name": "Laptop Lenovo ThinkPad T480s Core i5 / 8GB / SSD 256GB",
+      "category": "laptop-cu",
+      "price": 6800000,
+      "tag": "Bền Bỉ",
+      "image": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&auto=format&fit=crop&q=80",
+      "description": "Khung hợp kim magie chuẩn quân đội siêu bền, bàn phím gõ êm số 1 thế giới, chạy mượt mà mọi tác vụ."
+    },
+    {
+      "id": "lap-03",
+      "name": "Laptop HP EliteBook 840 G6 Core i5 / 16GB / SSD 256GB",
+      "category": "laptop-cu",
+      "price": 7200000,
+      "tag": "Sang Trọng",
+      "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format&fit=crop&q=80",
+      "description": "Vỏ nhôm nguyên khối sang trọng, loa Bang & Olufsen cao cấp, bảo mật vân tay 1 chạm và nhận diện khuôn mặt."
+    },
+    {
+      "id": "lap-04",
+      "name": "Laptop Dell XPS 13 9360 Core i7 / 16GB / SSD 512GB 3K Touch",
+      "category": "laptop-cu",
+      "price": 10500000,
+      "tag": "Cao Cấp",
+      "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&auto=format&fit=crop&q=80",
+      "description": "Viền màn hình siêu mỏng InfinityEdge cảm ứng 3K tuyệt đẹp, vỏ sợi carbon và nhôm nhẹ chỉ 1.2kg."
+    },
+    {
+      "id": "lap-05",
+      "name": "Laptop Gaming Acer Nitro 5 i5 / 16GB / SSD 512GB / GTX 1650",
+      "category": "laptop-cu",
+      "price": 11800000,
+      "tag": "Gaming",
+      "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80",
+      "description": "Cấu hình đồ họa & gaming mạnh mẽ, hệ thống 2 quạt tản nhiệt CoolBoost mát mẻ, màn hình 144Hz mượt mà."
+    },
+    {
+      "id": "lap-06",
+      "name": "Laptop Asus Vivobook 15 OLED Core i5 / 8GB / SSD 512GB",
+      "category": "laptop-cu",
+      "price": 8900000,
+      "tag": "Màn OLED",
+      "image": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&auto=format&fit=crop&q=80",
+      "description": "Màn hình OLED 100% DCI-P3 rực rỡ chuẩn đồ họa, bàn phím số tiện lợi, pin sạc nhanh 60% trong 49 phút."
+    },
+    {
+      "id": "lap-07",
+      "name": "Laptop Lenovo IdeaPad 5 Core i5 Gen 11 / 16GB / SSD 512GB",
+      "category": "laptop-cu",
+      "price": 9200000,
+      "tag": "Mới 99%",
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80",
+      "description": "Thiết kế hiện đại mỏng nhẹ, vi xử lý Intel thế hệ 11 mạnh mẽ, hỗ trợ mở khóa vân tay và sạc Type-C tiện lợi."
+    },
+    {
+      "id": "pin-01",
+      "name": "Sạc Laptop Dell 65W Chân Kim Nhỏ 4.5x3.0mm Zin Chính Hãng",
+      "category": "pin-sac",
+      "price": 380000,
+      "tag": "Chính Hãng",
+      "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600&auto=format&fit=crop&q=80",
+      "description": "Adapter sạc Dell chính hãng chống quá nhiệt, ổn định điện áp, bảo vệ bo mạch và tăng tuổi thọ pin."
+    },
+    {
+      "id": "pin-02",
+      "name": "Củ Sạc Nhanh Type-C 65W GaN Đa Năng Cho Laptop & Macbook",
+      "category": "pin-sac",
+      "price": 550000,
+      "tag": "Sạc Nhanh",
+      "image": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&auto=format&fit=crop&q=80",
+      "description": "Công nghệ GaN siêu nhỏ gọn, công suất 65W chuẩn PD 3.0 sạc siêu tốc cho mọi dòng laptop Type-C hiện đại."
+    },
+    {
+      "id": "pin-03",
+      "name": "Sạc Laptop Asus 19V - 3.42A (65W) Chân Tròn Chuẩn Zin",
+      "category": "pin-sac",
+      "price": 350000,
+      "tag": "Bảo Hành 12T",
+      "image": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600&auto=format&fit=crop&q=80",
+      "description": "Cục sạc tiêu chuẩn dành riêng cho các dòng máy Asus Vivobook, Zenbook với dây cáp mềm chống đứt gãy."
+    },
+    {
+      "id": "pin-04",
+      "name": "Pin Laptop Dell Inspiron 5570 / 5575 / 3580 42Wh Zin Mới 100%",
+      "category": "pin-sac",
+      "price": 680000,
+      "tag": "Zin 100%",
+      "image": "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&auto=format&fit=crop&q=80",
+      "description": "Cell pin A+ tuổi thọ cao, thời lượng 3-4 tiếng liên tục, miễn phí công thay thế và kiểm tra tại chỗ."
+    },
+    {
+      "id": "pin-05",
+      "name": "Pin Laptop HP Pavilion 14-CE / 15-CS (HT03XL) Chính Hãng",
+      "category": "pin-sac",
+      "price": 720000,
+      "tag": "Chính Hãng",
+      "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&auto=format&fit=crop&q=80",
+      "description": "Pin thay thế chính hãng cho dòng HP Pavilion, tích hợp mạch ngắt tự động chống chai và phồng pin."
+    },
+    {
+      "id": "pin-06",
+      "name": "Pin Laptop Asus K501 / A501 (B31N1429) Zin Bảo Hành 12T",
+      "category": "pin-sac",
+      "price": 690000,
+      "tag": "Lấy Liền",
+      "image": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=600&auto=format&fit=crop&q=80",
+      "description": "Pin laptop Asus chất lượng cao, dòng xả ổn định, thay thế lấy liền sau 15 phút, bảo hành 1 đổi 1."
+    },
+    {
+      "id": "pin-07",
+      "name": "Sạc Laptop Lenovo 20V - 3.25A (65W) Chân Vuông Vàng",
+      "category": "pin-sac",
+      "price": 360000,
+      "tag": "Bền Bỉ",
+      "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80",
+      "description": "Sạc chân vuông chuyên dùng cho dòng ThinkPad, IdeaPad với mạch chống giật và lọc nhiễu bảo vệ touchpad."
+    },
+    {
+      "id": "gear-01",
+      "name": "Chuột Không Dây Logitech M331 Silent Plus Siêu Êm",
+      "category": "chuot-ban-phim",
+      "price": 320000,
+      "tag": "Chống Ồn",
+      "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=600&auto=format&fit=crop&q=80",
+      "description": "Công nghệ SilentTouch giảm 90% tiếng nhấp chuột, kết nối không dây 2.4GHz xa 10m, pin dùng 18 tháng."
+    },
+    {
+      "id": "gear-02",
+      "name": "Chuột Gaming Logitech G102 Lightsync RGB 8000 DPI",
+      "category": "chuot-ban-phim",
+      "price": 420000,
+      "tag": "Gaming",
+      "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&auto=format&fit=crop&q=80",
+      "description": "Cảm biến quang học chính xác chuẩn eSports, LED RGB 16.8 triệu màu Lightsync, nút bấm cơ học đầm tay."
+    },
+    {
+      "id": "gear-03",
+      "name": "Bàn Phím Cơ Không Dây Royal Kludge RK84 3 Mode (BT/2.4G/USB)",
+      "category": "chuot-ban-phim",
+      "price": 950000,
+      "tag": "Bán Chạy",
+      "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80",
+      "description": "Layout 84 phím gọn gàng, hot-swap switch dễ thay thế, pin 3750mAh, LED RGB nhiều hiệu ứng rực rỡ."
+    },
+    {
+      "id": "gear-04",
+      "name": "Bàn Phím Văn Phòng Chống Nước Logitech K120 Chính Hãng",
+      "category": "chuot-ban-phim",
+      "price": 190000,
+      "tag": "Bền Bỉ",
+      "image": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=600&auto=format&fit=crop&q=80",
+      "description": "Bàn phím có dây cổng USB tiêu chuẩn, phím bấm êm ái, chống tràn nước, độ bền phím 10 triệu lần nhấn."
+    },
+    {
+      "id": "gear-05",
+      "name": "Bộ Bàn Phím Chuột Không Dây Logitech MK240 Nano",
+      "category": "chuot-ban-phim",
+      "price": 520000,
+      "tag": "Combo Tiện Lợi",
+      "image": "https://images.unsplash.com/photo-1563297007-0686b7003af7?w=600&auto=format&fit=crop&q=80",
+      "description": "Thiết kế nhỏ gọn thời trang, chống nước, đầu thu USB Nano cắm là nhận ngay cho máy tính & laptop."
+    },
+    {
+      "id": "gear-06",
+      "name": "Bàn Phím Cơ Gaming DareU EK87 Tenkeyless D-Switch",
+      "category": "chuot-ban-phim",
+      "price": 620000,
+      "tag": "Giá Rẻ",
+      "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=600&auto=format&fit=crop&q=80",
+      "description": "Switch D độc quyền độ bền 50 triệu lượt bấm, khung hợp kim chắc chắn, hệ thống LED Rainbow nổi bật."
+    },
+    {
+      "id": "gear-07",
+      "name": "Chuột Bluetooth Logitech Pebble M350 Nhỏ Gọn Thời Trang",
+      "category": "chuot-ban-phim",
+      "price": 450000,
+      "tag": "Thời Trang",
+      "image": "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&auto=format&fit=crop&q=80",
+      "description": "Thiết kế mỏng nhẹ hiện đại, kết nối kép Bluetooth & USB Receiver, êm ái khi làm việc nơi công cộng."
+    }
+  ],
+  "combos": [
+    {
+      "id": "srv-laptop",
+      "name": "Sửa Chữa Laptop Chuyên Nghiệp",
+      "tag": "Tận Nơi & Lấy Liền",
+      "price": 150000,
+      "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&auto=format&fit=crop&q=80",
+      "description": "Khắc phục triệt để các lỗi laptop mất nguồn, sọc màn hình, liệt bàn phím, hư bản lề, nóng máy tự tắt. Vệ sinh tra keo tản nhiệt cao cấp và thay thế linh kiện chính hãng lấy ngay trong ngày."
+    },
+    {
+      "id": "srv-pc",
+      "name": "Sửa Chữa PC & Máy Tính Để Bàn",
+      "tag": "Nhanh Chóng 24/7",
+      "price": 150000,
+      "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=800&auto=format&fit=crop&q=80",
+      "description": "Xử lý chuyên sâu PC văn phòng, Gaming, đồ họa và Workstation. Khắc phục lỗi treo đơ, màn hình xanh (dump xanh), lỗi RAM, nguồn PSU, card VGA và nâng cấp linh kiện tối ưu tận nơi."
+    },
+    {
+      "id": "srv-windows",
+      "name": "Cài Đặt Windows & Phần Mềm Tận Nơi",
+      "tag": "Chuẩn Bản Quyền",
+      "price": 120000,
+      "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop&q=80",
+      "description": "Cài đặt Windows 10/11 Pro sạch chuẩn, full Driver gốc, bộ Office, PDF, gõ tiếng Việt, diệt virus và phần mềm đồ họa (Adobe Photoshop, AI, Premiere, AutoCAD). Tối ưu máy chạy siêu tốc."
+    }
+  ],
+  "gallery": [
+    {
+      "id": "vid-01",
+      "type": "video",
+      "caption": "Cách tự vệ sinh quạt tản nhiệt Laptop tại nhà không lo hỏng máy",
+      "thumbnail": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=kXx3_xOebwU",
+      "tag": "Video Hướng Dẫn"
+    },
+    {
+      "id": "vid-02",
+      "type": "video",
+      "caption": "Khắc phục lỗi màn hình xanh (BSOD) trên Win 10/11 trong 3 phút",
+      "thumbnail": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=tgbNymZ7vqY",
+      "tag": "Khắc Phục Lỗi"
+    },
+    {
+      "id": "vid-03",
+      "type": "video",
+      "caption": "Mẹo tăng tốc máy tính cũ chạy mượt mà như mới mua",
+      "thumbnail": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/shorts/5EwKqZ2dFvw",
+      "tag": "Shorts 60s"
+    },
+    {
+      "id": "vid-04",
+      "type": "video",
+      "caption": "Hướng dẫn nâng cấp ổ cứng SSD NVMe không lo mất dữ liệu",
+      "thumbnail": "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=kXx3_xOebwU",
+      "tag": "Nâng Cấp Phần Cứng"
+    },
+    {
+      "id": "vid-05",
+      "type": "video",
+      "caption": "Cách kiểm tra độ chai pin Laptop bằng lệnh ẩn cực chuẩn",
+      "thumbnail": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/shorts/2K7H8YJ9L0Q",
+      "tag": "Shorts 60s"
+    },
+    {
+      "id": "vid-06",
+      "type": "video",
+      "caption": "Khắc phục triệt để lỗi Full Disk 100% giúp máy chạy siêu tốc",
+      "thumbnail": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=tgbNymZ7vqY",
+      "tag": "Mẹo Tối Ưu"
+    },
+    {
+      "id": "vid-07",
+      "type": "video",
+      "caption": "Bí quyết dọn dẹp bộ nhớ rác ổ C giải phóng hàng chục GB",
+      "thumbnail": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=kXx3_xOebwU",
+      "tag": "Dọn Rác Win"
+    },
+    {
+      "id": "vid-08",
+      "type": "video",
+      "caption": "5 Phím tắt thần thánh trên Windows dân IT không muốn bạn biết",
+      "thumbnail": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/shorts/5EwKqZ2dFvw",
+      "tag": "Shorts 60s"
+    },
+    {
+      "id": "vid-09",
+      "type": "video",
+      "caption": "Cách cài đặt Driver chuẩn chính hãng tránh xung đột hệ thống",
+      "thumbnail": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=tgbNymZ7vqY",
+      "tag": "Kỹ Thuật Máy Tính"
+    },
+    {
+      "id": "vid-10",
+      "type": "video",
+      "caption": "Mẹo chặn quảng cáo phiền toái và tăng tốc Google Chrome",
+      "thumbnail": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/shorts/2K7H8YJ9L0Q",
+      "tag": "Shorts 60s"
+    },
+    {
+      "id": "vid-11",
+      "type": "video",
+      "caption": "Hướng dẫn phục hồi dữ liệu bị xóa nhầm trong thùng rác an toàn",
+      "thumbnail": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=kXx3_xOebwU",
+      "tag": "Cứu Dữ Liệu"
+    },
+    {
+      "id": "vid-12",
+      "type": "video",
+      "caption": "Cách chọn bàn phím cơ và Switch phù hợp làm việc không mỏi tay",
+      "thumbnail": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=tgbNymZ7vqY",
+      "tag": "Tư Vấn Gear"
+    },
+    {
+      "id": "vid-13",
+      "type": "video",
+      "caption": "Cách phân biệt sạc Laptop chính hãng và sạc nhái nguy hiểm",
+      "thumbnail": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=kXx3_xOebwU",
+      "tag": "Cảnh Báo Linh Kiện"
+    },
+    {
+      "id": "vid-14",
+      "type": "video",
+      "caption": "Nên chọn RAM 8GB hay 16GB? Cách chọn RAM chuẩn Bus",
+      "thumbnail": "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/shorts/5EwKqZ2dFvw",
+      "tag": "Shorts 60s"
+    },
+    {
+      "id": "vid-15",
+      "type": "video",
+      "caption": "Kinh nghiệm kiểm tra Laptop cũ nguyên zin chưa qua sửa chữa",
+      "thumbnail": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=tgbNymZ7vqY",
+      "tag": "Mua Máy Cũ"
+    },
+    {
+      "id": "vid-16",
+      "type": "video",
+      "caption": "Top 5 sai lầm tai hại khi dùng Laptop khiến máy nhanh hỏng",
+      "thumbnail": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/shorts/2K7H8YJ9L0Q",
+      "tag": "Shorts 60s"
+    },
+    {
+      "id": "vid-17",
+      "type": "video",
+      "caption": "So sánh keo tản nhiệt gốm và kim loại lỏng: Loại nào mát hơn?",
+      "thumbnail": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=kXx3_xOebwU",
+      "tag": "Tản Nhiệt"
+    },
+    {
+      "id": "vid-18",
+      "type": "video",
+      "caption": "Hướng dẫn thiết lập 2 màn hình làm việc đa nhiệm hiệu quả",
+      "thumbnail": "https://images.unsplash.com/photo-1563297007-0686b7003af7?w=600&auto=format&fit=crop&q=80",
+      "url": "https://www.youtube.com/watch?v=tgbNymZ7vqY",
+      "tag": "Setup Làm Việc"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "t1",
+      "name": "Anh Hoàng Nam",
+      "role": "Phường Chánh Hưng, Quận 8, TP.HCM",
+      "comment": "Laptop Dell của mình bị sập nguồn giữa lúc đang làm đồ án gấp. Gọi bên Sửa Máy Tính 247 thì chỉ tầm 25 phút là bạn kỹ thuật có mặt tận nhà. Kiểm tra minh bạch, xử lý lấy liền trong 40 phút mà giá lại rất hợp lý. Máy chạy êm và mát hơn hẳn!"
+    },
+    {
+      "id": "t2",
+      "name": "Chị Thảo My",
+      "role": "Phường Bến Nghé, Quận 1, TP.HCM",
+      "comment": "Văn phòng công ty mình có 6 bộ máy tính cần cài lại Windows, vệ sinh và nâng cấp ổ cứng SSD. Kỹ thuật viên làm việc cực kỳ chuyên nghiệp, thao tác nhanh nhẹn, bảo mật dữ liệu an toàn tuyệt đối. Giá linh kiện chính hãng tốt hơn nhiều nơi khác."
+    },
+    {
+      "id": "t3",
+      "name": "Anh Minh Trí",
+      "role": "Phường 12, Quận 10, TP.HCM",
+      "comment": "Mình mua một con ThinkPad cũ và bộ bàn phím chuột không dây bên shop. Máy chuẩn nguyên zin đẹp 99%, bàn phím gõ êm mượt mà. Rất thích chính sách bảo hành 1 đổi 1 uy tín và sự nhiệt tình hỗ trợ kỹ thuật 24/7 của shop."
+    }
+  ]
+}

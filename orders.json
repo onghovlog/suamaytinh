@@ -1,0 +1,62 @@
+[
+  {
+    "fullname": "Trần Bá Hộ",
+    "phone": "0918326706",
+    "address": "801/2A Phạm Thế Hiển, P. Chánh Hưng, TPHCM",
+    "note": "thanks",
+    "paymentMethod": "COD",
+    "items": [
+      {
+        "id": "p1",
+        "name": "Bánh Thập Cẩm Gà Quay",
+        "price": 135000,
+        "image": "assets/images/thap_cam_ga_quay.jpg",
+        "quantity": 3
+      }
+    ],
+    "total": 405000,
+    "id": "ord-1788016801874",
+    "createdAt": "2026-08-29T15:20:01.874Z",
+    "status": "Đã giao"
+  },
+  {
+    "fullname": "Trần Bá Hộ",
+    "phone": "0918326706",
+    "address": "801/2A Phạm Thế Hiển, P Chánh Hưng, TPHCM",
+    "note": "giờ hành chánh",
+    "paymentMethod": "COD",
+    "items": [
+      {
+        "id": "p2",
+        "name": "Bánh Lava Custard Trứng Chảy",
+        "price": 115000,
+        "image": "assets/images/lava_custard.jpg",
+        "quantity": 1
+      }
+    ],
+    "total": 115000,
+    "id": "ord-1788015934766",
+    "createdAt": "2026-08-29T15:05:34.766Z",
+    "status": "Đang xử lý"
+  },
+  {
+    "fullname": "Tran Anh Quan",
+    "phone": "0901234567",
+    "address": "456 Nguyen Trai, Q5, TP.HCM",
+    "note": "COD test.",
+    "paymentMethod": "COD",
+    "items": [
+      {
+        "id": "p1",
+        "name": "Bánh Thập Cẩm Gà Quay",
+        "price": 135000,
+        "image": "assets/images/thap_cam_ga_quay.jpg",
+        "quantity": 2
+      }
+    ],
+    "total": 270000,
+    "id": "ord-1788015728286",
+    "createdAt": "2026-08-29T15:02:08.286Z",
+    "status": "Đang xử lý"
+  }
+]

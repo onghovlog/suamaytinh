@@ -5,10 +5,23 @@ const path = require('path');
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/banhtrungthu';
 
-// Connect to MongoDB
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB successfully.'))
-  .catch(err => console.error('MongoDB connection error:', err));
+// Connect to MongoDB with 5s timeout to prevent hanging on VPS if IP blocked
+mongoose.connect(MONGODB_URI, {
+  serverSelectionTimeoutMS: 5000
+})
+  .then(async () => {
+    console.log('✅ Đã kết nối thành công đến MongoDB!');
+    await seedDatabase();
+  })
+  .catch(err => {
+    console.error('❌ LỖI KẾT NỐI MONGODB:');
+    console.error('Chi tiết:', err.message);
+    console.error('----------------------------------------------------');
+    console.error('👉 KHẮC PHỤC TRÊN VPS:');
+    console.error('1. Đảm bảo file .env đã có MONGODB_URI chính xác.');
+    console.error('2. Trên MongoDB Atlas -> Vào Network Access -> Thêm IP: 0.0.0.0/0 (cho phép kết nối từ VPS).');
+    console.error('----------------------------------------------------');
+  });
 
 // Schema for Config (Single Document holding the entire system config)
 const configSchema = new mongoose.Schema({
@@ -33,46 +46,68 @@ const orderSchema = new mongoose.Schema({
   items: { type: Array, default: [] },
   total: { type: Number, required: true },
   status: { type: String, default: 'Đang xử lý' },
-  createdAt: { type: String, required: true } // Keep ISO String formatting as client expects it
+  createdAt: { type: String, required: true }
 }, { timestamps: true });
 
 const Order = mongoose.model('Order', orderSchema);
 
-// Auto Migration/Seeding helper
-async function seedDatabase() {
-  try {
-    // 1. Seed System Configuration
-    const configCount = await Config.countDocuments();
-    if (configCount === 0) {
-      console.log('Config collection is empty. Checking db.json / db.json.bak for seeding...');
-      let dbJsonPath = path.join(__dirname, 'db.json');
-      if (!fs.existsSync(dbJsonPath)) {
-        dbJsonPath = path.join(__dirname, 'db.json.bak');
+// Helper to get local seed data
+function getLocalSeedData() {
+  const possiblePaths = [
+    path.join(__dirname, 'db.json'),
+    path.join(__dirname, 'db.json.bak')
+  ];
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p)) {
+      try {
+        const content = fs.readFileSync(p, 'utf8');
+        return JSON.parse(content);
+      } catch (e) {
+        console.error(`Lỗi đọc file ${p}:`, e);
       }
+    }
+  }
+  return null;
+}
+
+// Auto Migration/Seeding helper
+async function seedDatabase(force = false) {
+  try {
+    let config = await Config.findOne();
+    const needsSeed = force || !config || !config.products || config.products.length === 0;
+
+    if (needsSeed) {
+      console.log('🔄 Đang kiểm tra và nạp dữ liệu mặc định vào MongoDB...');
+      const dbData = getLocalSeedData();
       
-      if (fs.existsSync(dbJsonPath)) {
-        const fileContent = fs.readFileSync(dbJsonPath, 'utf8');
-        const dbData = JSON.parse(fileContent);
+      if (dbData) {
+        if (!config) {
+          config = new Config({});
+        }
+        config.brand = dbData.brand || {};
+        config.admin = dbData.admin || { username: "0344582293", password: "123" };
+        config.products = dbData.products || [];
+        config.combos = dbData.combos || [];
+        config.gallery = dbData.gallery || [];
+        config.testimonials = dbData.testimonials || [];
         
-        await Config.create({
-          brand: dbData.brand || {},
-          admin: dbData.admin || {},
-          products: dbData.products || [],
-          combos: dbData.combos || [],
-          gallery: dbData.gallery || [],
-          testimonials: dbData.testimonials || []
-        });
-        console.log(`Successfully seeded Config from ${path.basename(dbJsonPath)}`);
+        config.markModified('brand');
+        config.markModified('admin');
+        config.markModified('products');
+        config.markModified('combos');
+        config.markModified('gallery');
+        config.markModified('testimonials');
+
+        await config.save();
+        console.log(`✅ Đã nạp thành công ${config.products.length} sản phẩm, ${config.combos.length} combo dịch vụ vào MongoDB!`);
       } else {
-        console.log('No db.json or db.json.bak found. Creating a default config...');
-        await Config.create({});
+        console.warn('⚠️ Không tìm thấy file db.json để nạp dữ liệu khởi tạo.');
       }
     }
 
     // 2. Seed Orders
     const orderCount = await Order.countDocuments();
     if (orderCount === 0) {
-      console.log('Order collection is empty. Checking orders.json / orders.json.bak for seeding...');
       let ordersJsonPath = path.join(__dirname, 'orders.json');
       if (!fs.existsSync(ordersJsonPath)) {
         ordersJsonPath = path.join(__dirname, 'orders.json.bak');
@@ -95,22 +130,19 @@ async function seedDatabase() {
             createdAt: o.createdAt || new Date().toISOString()
           }));
           await Order.insertMany(formattedOrders);
-          console.log(`Successfully seeded ${formattedOrders.length} orders from ${path.basename(ordersJsonPath)}`);
+          console.log(`✅ Đã nạp thành công ${formattedOrders.length} đơn hàng mẫu vào MongoDB.`);
         }
-      } else {
-        console.log('No orders.json or orders.json.bak found. No seeding for orders.');
       }
     }
   } catch (error) {
-    console.error('Error seeding database:', error);
+    console.error('Lỗi khi nạp dữ liệu vào database:', error);
   }
 }
-
-// Run seeding
-seedDatabase();
 
 module.exports = {
   Config,
   Order,
-  mongoose
+  mongoose,
+  seedDatabase,
+  getLocalSeedData
 };

@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { Config, Order } = require('./db');
+const { Config, Order, mongoose, seedDatabase, getLocalSeedData } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -11,16 +11,57 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(express.static(__dirname));
 
+// Health check endpoint for VPS diagnostic
+app.get('/api/health', (req, res) => {
+  const mongoStates = ['disconnected', 'connected', 'connecting', 'disconnecting'];
+  const state = mongoStates[mongoose.connection.readyState] || 'unknown';
+  res.json({
+    status: 'ok',
+    mongodb: state,
+    port: PORT,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Manual reseed endpoint
+app.post('/api/reseed', async (req, res) => {
+  try {
+    await seedDatabase(true);
+    res.json({ message: 'Nạp lại dữ liệu mẫu thành công!' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // --- DATABASE API ---
 app.get('/api/db', async (req, res) => {
   try {
     let config = await Config.findOne();
-    if (!config) {
-      config = await Config.create({});
+    
+    // Nếu chưa có hoặc mảng sản phẩm rỗng, tự động nạp từ db.json
+    if (!config || !config.products || config.products.length === 0) {
+      await seedDatabase(true);
+      config = await Config.findOne();
     }
-    res.json(config);
+    
+    if (config) {
+      return res.json(config);
+    }
+    
+    // Fallback nếu DB vẫn null
+    const localData = getLocalSeedData();
+    if (localData) {
+      return res.json(localData);
+    }
+    
+    res.status(404).json({ error: 'Chưa có dữ liệu.' });
   } catch (error) {
-    console.error('Error fetching config:', error);
+    console.error('Error fetching config from MongoDB, using local fallback:', error.message);
+    // Cứu cánh khi VPS không kết nối được MongoDB Atlas: dùng file db.json cục bộ
+    const localData = getLocalSeedData();
+    if (localData) {
+      return res.json(localData);
+    }
     res.status(500).json({ error: 'Lỗi máy chủ khi lấy cấu hình.' });
   }
 });
@@ -31,6 +72,15 @@ app.post('/api/save-db', async (req, res) => {
     return res.status(400).json({ error: 'Dữ liệu không hợp lệ.' });
   }
   
+  // 1. Đồng bộ lưu file db.json cục bộ làm backup
+  try {
+    const dbJsonPath = path.join(__dirname, 'db.json');
+    fs.writeFileSync(dbJsonPath, JSON.stringify(newDbData, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Không thể ghi file db.json cục bộ:', e.message);
+  }
+
+  // 2. Lưu vào MongoDB
   try {
     let config = await Config.findOne();
     if (!config) {
@@ -52,8 +102,9 @@ app.post('/api/save-db', async (req, res) => {
     await config.save();
     res.json({ message: 'Lưu cơ sở dữ liệu thành công!' });
   } catch (error) {
-    console.error('Error saving config:', error);
-    res.status(500).json({ error: 'Không thể ghi cơ sở dữ liệu MongoDB.' });
+    console.error('Error saving config to MongoDB:', error);
+    // Dù MongoDB lỗi, file cục bộ đã được lưu
+    res.json({ message: 'Đã lưu cục bộ (Lưu ý: MongoDB đang ngắt kết nối).' });
   }
 });
 
@@ -145,7 +196,18 @@ app.get('/api/orders', async (req, res) => {
     const orders = await Order.find().sort({ createdAt: -1 });
     res.json(orders);
   } catch (error) {
-    console.error('Error fetching orders:', error);
+    console.error('Error fetching orders from MongoDB, checking local fallback:', error.message);
+    const ordersPath = fs.existsSync(path.join(__dirname, 'orders.json'))
+      ? path.join(__dirname, 'orders.json')
+      : (fs.existsSync(path.join(__dirname, 'orders.json.bak')) ? path.join(__dirname, 'orders.json.bak') : null);
+    if (ordersPath) {
+      try {
+        const ordersData = JSON.parse(fs.readFileSync(ordersPath, 'utf8'));
+        return res.json(ordersData);
+      } catch (e) {
+        console.error('Error reading local orders:', e);
+      }
+    }
     res.status(500).json({ error: 'Lỗi máy chủ khi lấy danh sách đơn hàng.' });
   }
 });
